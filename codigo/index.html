@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDH de mi estado</title>
+<style>
+  :root {
+    --verde-oscuro: #1f4d3a;
+    --verde: #2e7d4f;
+    --verde-claro: #e6f2ea;
+    --hoja: #7cb342;
+    --tierra: #8d6e4f;
+    --cielo: #e3f1f6;
+    --texto: #1e2b24;
+    --blanco: #ffffff;
+    --error: #b23a2b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--texto);
+    background: linear-gradient(180deg, var(--cielo) 0%, var(--verde-claro) 100%);
+    min-height: 100vh;
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(135deg, var(--verde-oscuro), var(--verde));
+    color: var(--blanco);
+    padding: 32px 16px 40px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    letter-spacing: 0.5px;
+  }
+  header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+  main {
+    max-width: 760px;
+    margin: -24px auto 40px;
+    padding: 0 16px;
+  }
+  .tarjeta {
+    background: var(--blanco);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 6px 18px rgba(31, 77, 58, 0.12);
+    margin-bottom: 20px;
+  }
+  .tarjeta h2 {
+    margin-top: 0;
+    color: var(--verde-oscuro);
+    font-size: 1.3rem;
+  }
+  .dimensiones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .dimension {
+    background: var(--verde-claro);
+    border-left: 5px solid var(--hoja);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+  .dimension strong {
+    display: block;
+    color: var(--verde-oscuro);
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--verde-oscuro);
+  }
+  .controles {
+    display: flex;
+    gap: 12px;
+  }
+  select {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid var(--hoja);
+    border-radius: 10px;
+    background: var(--blanco);
+    color: var(--texto);
+  }
+  select:focus {
+    outline: none;
+    border-color: var(--verde);
+  }
+  button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    background: var(--verde);
+    color: var(--blanco);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  button:hover:not(:disabled) { background: var(--verde-oscuro); }
+  button:disabled {
+    background: #9bb8a6;
+    cursor: not-allowed;
+  }
+  #resultado {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 10px;
+    background: var(--verde-claro);
+    border: 1px solid #c5ddcc;
+    white-space: pre-line;
+    min-height: 60px;
+    font-size: 1rem;
+  }
+  #resultado.vacio {
+    color: #6b7f73;
+    font-style: italic;
+  }
+  #resultado.error {
+    background: #fbecea;
+    border-color: #e8b4ad;
+    color: var(--error);
+  }
+  footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--tierra);
+    padding: 0 16px 24px;
+  }
+  @media (max-width: 600px) {
+    .dimensiones { grid-template-columns: 1fr; }
+    .controles { flex-direction: column; }
+    button { width: 100%; }
+    .tarjeta { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌱 IDH de mi estado</h1>
+  <p>Consulta el Índice de Desarrollo Humano de cualquier entidad federativa de México</p>
+</header>
+
+<main>
+  <section class="tarjeta">
+    <h2>¿Qué es el Índice de Desarrollo Humano?</h2>
+    <p>
+      El Índice de Desarrollo Humano (IDH) es una medida del Programa de las Naciones Unidas
+      para el Desarrollo (PNUD) que resume en un valor de 0 a 1 el nivel de bienestar de una
+      población. Mientras más cerca de 1, mayor es el desarrollo humano. Se calcula a partir de
+      tres dimensiones básicas:
+    </p>
+    <div class="dimensiones">
+      <div class="dimension"><strong>❤️ Salud</strong>Vivir una vida larga y saludable.</div>
+      <div class="dimension"><strong>📚 Educación</strong>Adquirir conocimientos.</div>
+      <div class="dimension"><strong>💰 Ingreso</strong>Tener un nivel de vida digno.</div>
+    </div>
+  </section>
+
+  <section class="tarjeta">
+    <label for="entidad">Selecciona una entidad federativa:</label>
+    <div class="controles">
+      <select id="entidad">
+        <option value="Aguascalientes">Aguascalientes</option>
+        <option value="Baja California">Baja California</option>
+        <option value="Baja California Sur">Baja California Sur</option>
+        <option value="Campeche">Campeche</option>
+        <option value="Chiapas">Chiapas</option>
+        <option value="Chihuahua">Chihuahua</option>
+        <option value="Ciudad de México">Ciudad de México</option>
+        <option value="Coahuila">Coahuila</option>
+        <option value="Colima">Colima</option>
+        <option value="Durango">Durango</option>
+        <option value="Estado de México">Estado de México</option>
+        <option value="Guanajuato">Guanajuato</option>
+        <option value="Guerrero">Guerrero</option>
+        <option value="Hidalgo">Hidalgo</option>
+        <option value="Jalisco">Jalisco</option>
+        <option value="Michoacán">Michoacán</option>
+        <option value="Morelos">Morelos</option>
+        <option value="Nayarit">Nayarit</option>
+        <option value="Nuevo León">Nuevo León</option>
+        <option value="Oaxaca">Oaxaca</option>
+        <option value="Puebla">Puebla</option>
+        <option value="Querétaro">Querétaro</option>
+        <option value="Quintana Roo">Quintana Roo</option>
+        <option value="San Luis Potosí">San Luis Potosí</option>
+        <option value="Sinaloa" selected>Sinaloa</option>
+        <option value="Sonora">Sonora</option>
+        <option value="Tabasco">Tabasco</option>
+        <option value="Tamaulipas">Tamaulipas</option>
+        <option value="Tlaxcala">Tlaxcala</option>
+        <option value="Veracruz">Veracruz</option>
+        <option value="Yucatán">Yucatán</option>
+        <option value="Zacatecas">Zacatecas</option>
+      </select>
+      <button id="consultar" type="button">Consultar</button>
+    </div>
+
+    <div id="resultado" class="vacio">Aquí aparecerá la información del IDH de la entidad seleccionada.</div>
+  </section>
+</main>
+
+<footer>
+  Datos: PNUD México, Índice de Desarrollo Humano para las entidades federativas, México 2015 (datos de 2012).<br>
+  Práctica 3.2 · Desarrollo Sustentable · TecNM Campus Mazatlán
+</footer>
+
+<script>
+  // PEGA AQUÍ LA URL DE TU WEBHOOK DE MAKE (entre las comillas):
+  const WEBHOOK_URL = "https://hook.us2.make.com/hqufgnrx4l8hwj4o4m45obvwv7mih7ji";
+
+  const selector = document.getElementById("entidad");
+  const boton = document.getElementById("consultar");
+  const resultado = document.getElementById("resultado");
+
+  boton.addEventListener("click", async () => {
+    const entidad = selector.value;
+
+    boton.disabled = true;
+    resultado.className = "";
+    resultado.textContent = "Consultando...";
+
+    try {
+      const respuesta = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        body: new URLSearchParams({ entidad: entidad })
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("Respuesta no válida: " + respuesta.status);
+      }
+
+      const texto = await respuesta.text();
+      resultado.textContent = texto;
+    } catch (error) {
+      resultado.className = "error";
+      resultado.textContent = "No se pudo obtener la información, intenta de nuevo.";
+    } finally {
+      boton.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
