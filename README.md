@@ -20,7 +20,7 @@ Interpretar el Índice de Desarrollo Humano (IDH) y sus componentes para las ent
 | Carpeta | Contenido |
 |---|---|
 | `codigo/` | `blueprint.json` (escenario de Make exportado), `index.html` (página web) e `IDH_entidades.pdf` (archivo de Knowledge) |
-| `imagenes/` | Capturas del escenario completo y de la página funcionando |
+| `imagenes/` | Capturas del escenario completo, la página funcionando (Sinaloa, CDMX y Chiapas) y el historial de créditos |
 | `video/` | `enlace.txt` con el link al video de YouTube |
 | `resultados/` | PDF con lo que se aprendió en la práctica |
 
@@ -51,6 +51,27 @@ Página web (GitHub Pages)  →  Make: Webhooks → Make AI Agent → Webhook Re
 4. **Estructura de datos (Actividad 5):** con *Run once* se confirmó que el webhook recibe el campo `entidad`.
 5. **Make AI Agent (Actividad 6):** conexión *Make's AI Provider*, Knowledge `IDH_entidades.pdf`, input `Entidad: {{1.entidad}}` e instrucciones para responder solo con los datos del archivo.
 6. **Webhook Response (Actividad 7):** status 200, body con la respuesta del agente y headers `Content-Type: text/plain; charset=utf-8` y `Access-Control-Allow-Origin: *`. El escenario quedó activo con *Immediately as data arrives*.
+
+### Imágenes
+
+**Escenario completo en Make** (Webhook → Make AI Agent con Knowledge → Webhook Response):
+
+![Escenario completo](imagenes/01_escenario_completo.jpg)
+
+**Página publicada en GitHub Pages:**
+
+| Página | Consultando... | Resultado Sinaloa |
+|---|---|---|
+| ![Página](imagenes/02_pagina_publicada.jpg) | ![Consultando](imagenes/03_consultando.jpg) | ![Sinaloa](imagenes/04_resultado_sinaloa.jpg) |
+
+| IDH más alto: Ciudad de México | IDH más bajo: Chiapas |
+|---|---|
+| ![CDMX](imagenes/05_resultado_cdmx.jpg) | ![Chiapas](imagenes/06_resultado_chiapas.jpg) |
+
+**Historial del escenario y créditos consumidos:**
+
+![Historial](imagenes/07_historial_ejecuciones.jpg)
+![Créditos](imagenes/08_historial_creditos.jpg)
 
 ## 5. Verificación de resultados (Actividad 8)
 
@@ -118,7 +139,7 @@ En las cifras, sí: las 21 cifras de las tres consultas (IDH, salud, educación,
 
 ## 7. Créditos consumidos
 
-En el historial del escenario, cada consulta consumió alrededor de **4.5 créditos** (4.49 a 4.58) y **4 operaciones** (webhook, AI Agent, búsqueda en Knowledge y respuesta), con una duración de 6 a 9 segundos. Por eso fue importante subir solo las tablas y no el informe completo: el agente busca dentro del Knowledge en cada consulta y un archivo más grande gastaría más créditos.
+En el historial del escenario, cada consulta consumió alrededor de **4.5 créditos** (entre 4.46 y 4.65) y **4 operaciones** (webhook, AI Agent, búsqueda en Knowledge y respuesta), y tardó entre 6 y 11 segundos en responder. Por eso fue importante subir solo las tablas y no el informe completo: el agente busca dentro del Knowledge en cada consulta y un archivo más grande gastaría más créditos.
 
 ## 8. Fuente
 
