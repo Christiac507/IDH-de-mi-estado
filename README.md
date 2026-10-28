@@ -21,7 +21,8 @@ La IA responde **únicamente con los datos oficiales del PNUD** que se le dieron
 
 🌐 **Página publicada:** [christiac507.github.io/IDH-de-mi-estado/codigo/](https://christiac507.github.io/IDH-de-mi-estado/codigo/)
 
-**Video de la prueba en vivo:** [▶️ Ver video en YouTube](ENLACE_YOUTUBE)
+**Video de la prueba en vivo:** [▶️ Ver video en YouTube](<img width="1137" height="477" alt="image" src="https://github.com/user-attachments/assets/673f3db8-647e-45c3-b075-222eb1978c56" />
+)
 
 ## 2. Estructura del repositorio
 
